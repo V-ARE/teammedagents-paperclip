@@ -14,13 +14,23 @@ Shipping TeamMedAgents as a first-class citizen of the Paperclip orchestration p
 - ✅ ADR 0001: Pure TypeScript core (no Python service)
 - ✅ Example minimal medical case (`examples/minimal-case.json`)
 - ✅ `pnpm install` succeeds (2 packages resolved)
-- ✅ Reference repo cloned: `paperclip/`
+- ✅ Reference structure: `references/teammedagents`, `references/hermes-paperclip-adapter`
 - ✅ `.gitignore` configured for TypeScript/Node.js monorepo
 
+### Reference Materials
+
+Read-only reference repos are in `references/`:
+
+| Reference | Location | Purpose |
+|-----------|----------|---------|
+| **TeamMedAgents** | `E:\SLM-TeamMedAgents\` | Canonical ICML algorithm & benchmarks |
+| **Paperclip** | `E:\SLM-TeamMedAgents\` | Upstream orchestration framework |
+| **Hermes Adapter** | `references/hermes-paperclip-adapter/` | External adapter pattern reference |
+
+See `references/*/README.md` for usage guidelines. These are not vendored — extract patterns, do not copy code.
+
 ### Blockers for Phase 1
-- ⏳ **docs/teammedagent.md** — Copy or link the research repo spec (required to start Phase 1)
-- ⏳ **TeamMedAgents repository URL** — Where to get the canonical algorithm and benchmarks
-- ⏳ **hermes-paperclip-adapter URL** (optional) — External adapter pattern reference
+- ⏳ **docs/teammedagent.md** — Copy the algorithm spec from `E:\SLM-TeamMedAgents\` (required to start Phase 1)
 
 ## Next: Phase 1 — Core Implementation
 

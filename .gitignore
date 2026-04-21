@@ -47,10 +47,9 @@ temp/
 .DS_Store
 Thumbs.db
 
-# Reference repos (cloned as siblings, not vendored)
-paperclip/
-hermes-paperclip-adapter/
-TeamMedAgents/
+# Reference repos (read-only, cloned into references/)
+# Do not edit these — they are external sources for porting patterns
+# See references/*/README.md for usage guidelines
 
 # Build artifacts
 .next/
