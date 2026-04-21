@@ -26,6 +26,7 @@
     "@teammedagents-paperclip/core": "workspace:*"
   },
   "devDependencies": {
+    "@types/node": "^25.6.0",
     "typescript": "^5.4.5"
   }
 }

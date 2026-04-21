@@ -24,8 +24,11 @@
   ],
   "author": "TeamMedAgents Team",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "zod": "^3.22.4"
+  },
   "devDependencies": {
+    "@types/node": "^25.6.0",
     "typescript": "^5.4.5"
   }
 }

@@ -2,6 +2,8 @@
 
 Source of truth for this project. Read this file before every coding session.
 
+**ALWAYS ask for clarity:** The algorithms involved are complex, and we aim to build a general-purpose paperclip adapter. If anything needs a tweak or is ambiguous, stop and ask the user before making major assumptions.
+
 ## 1. Goal
 Ship TeamMedAgents as a first-class citizen of the Paperclip ecosystem in **two surfaces, built in sequence, not in parallel**:
 
@@ -108,6 +110,12 @@ If any of these disagree, the local `docs/decisions/` entries win. If no decisio
 - **All IO serializable as JSON.** Sessions, transcripts, case results, config.
 - **One small change per commit.** Tests pass after each.
 - **Parse agent output as untrusted.** Validate shapes, never eval, never forward commands or URLs blindly.
+- **Model-Agnostic Design:** The adapter must work seamlessly with any API key provider (e.g., OpenAI, Anthropic, Grok, Google AI Studio, Gemma, etc.). Users have the power to pick their own models (light model, heavy model, image-capable model) when providing API keys.
+- **Multimodal & Tiered Setup:** Support routing simple agentic collaboration to a small/light model and critical reasoning to a heavy model. Provide graceful, seamless support for image-capable models if the input contains images.
+- **Flexible Inputs & Outputs:** The algorithm must be updated to accept open-ended questions (not just Question + MCQ) alongside an optional expected output. It should also accept an optional context input (e.g., case histories, graphs, charts, or output from web agents) to help curate answers.
+- **Configurable Execution:** The team collaboration aspect must be user-configurable, allowing users to specify sequential-only or parallel-where-possible execution flows.
+- **Comprehensive Tracing:** Properly document traces for each phase and the total span, including token counts, latency, and detailed descriptions.
+- **Robustness:** Gracefully handle all API calls with retries and comprehensive error handling.
 
 ## 9. Phases and milestones
 
