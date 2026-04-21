@@ -1,0 +1,31 @@
+{
+  "name": "@teammedagents-paperclip/core",
+  "version": "0.0.1",
+  "description": "Pure TypeScript runtime for TeamMedAgents workflow and teamwork orchestration",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test dist/**/*.test.js",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "teammedagents",
+    "orchestration",
+    "multi-agent",
+    "medical-reasoning"
+  ],
+  "author": "TeamMedAgents Team",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

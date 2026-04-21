@@ -1,0 +1,31 @@
+{
+  "name": "@teammedagents-paperclip/adapter",
+  "version": "0.0.1",
+  "description": "Paperclip adapter that runs TeamMedAgents as a managed employee",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test dist/**/*.test.js",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "paperclip",
+    "adapter",
+    "teammedagents"
+  ],
+  "author": "TeamMedAgents Team",
+  "license": "MIT",
+  "dependencies": {
+    "@paperclipai/adapter-utils": "2026.416.0",
+    "@teammedagents-paperclip/core": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "@teammedagents-paperclip/plugin",
+  "version": "0.0.1",
+  "description": "Deferred. Paperclip plugin for TeamMedAgents teamwork middleware. See START.md § 9 Phase 3.",
+  "private": true,
+  "license": "MIT"
+}

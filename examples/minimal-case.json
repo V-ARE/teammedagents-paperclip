@@ -1,0 +1,22 @@
+
+{
+  "caseId": "benchmark-001",
+  "question": "A 65-year-old patient presents with chest pain and shortness of breath. Troponin is mildly elevated. What is your diagnostic assessment?",
+  "patientContext": {
+    "age": 65,
+    "medicalHistory": ["hypertension", "type-2-diabetes"],
+    "currentMedications": ["lisinopril", "metformin"],
+    "vitalSigns": {
+      "bloodPressure": "145/92",
+      "heartRate": 102,
+      "temperature": 37.1,
+      "respiratoryRate": 18
+    }
+  },
+  "labResults": {
+    "troponin": 0.08,
+    "bNP": 350,
+    "ecg": "ST depression in V2-V4"
+  }
+}
+
