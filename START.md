@@ -111,6 +111,10 @@ If any of these disagree, the local `docs/decisions/` entries win. If no decisio
 - **One small change per commit.** Tests pass after each.
 - **Parse agent output as untrusted.** Validate shapes, never eval, never forward commands or URLs blindly.
 - **Model-Agnostic Design:** The adapter must work seamlessly with any API key provider (e.g., OpenAI, Anthropic, Grok, Google AI Studio, Gemma, etc.). Users have the power to pick their own models (light model, heavy model, image-capable model) when providing API keys.
+- **Verified Model Support Matrix (April 2026):** The adapter safely supports and automatically resolves endpoints for:
+   - *Google AI Studio:* `gemini-2.5-pro`, `gemini-2.5-flash`, `gemini-2.5-flash-lite`
+   - *OpenAI:* `gpt-5.4`, `gpt-5.4-pro`, `gpt-5.4-mini`
+   - *Anthropic:* `claude-opus-4-7`, `claude-sonnet-4-6`, `claude-haiku-4-5`
 - **Multimodal & Tiered Setup:** Support routing simple agentic collaboration to a small/light model and critical reasoning to a heavy model. Provide graceful, seamless support for image-capable models if the input contains images.
 - **Flexible Inputs & Outputs:** The algorithm must be updated to accept open-ended questions (not just Question + MCQ) alongside an optional expected output. It should also accept an optional context input (e.g., case histories, graphs, charts, or output from web agents) to help curate answers.
 - **Configurable Execution:** The team collaboration aspect must be user-configurable, allowing users to specify sequential-only or parallel-where-possible execution flows.

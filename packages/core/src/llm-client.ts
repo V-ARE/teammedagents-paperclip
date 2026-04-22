@@ -15,7 +15,7 @@ export class LLMClient {
       try {
         const modelName = tier === 'light' ? this.config.light : tier === 'image' ? (this.config.image || this.config.heavy) : this.config.heavy;
         const provider = this.config.apiProvider || 'openai';
-        const apiKey = this.config.apiKey || process.env.API_KEY || process.env.OPENAI_API_KEY || process.env.ANTHROPIC_API_KEY;
+        const apiKey = this.config.apiKey || process.env.API_KEY || process.env.OPENAI_API_KEY || process.env.ANTHROPIC_API_KEY || process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
 
         if (!apiKey) throw new Error("API Key required.");
 
@@ -83,6 +83,33 @@ export class LLMClient {
             const data: any = await response.json();
             result = data.content?.[0]?.text || "";
             tokensUsed = (data.usage?.input_tokens || 0) + (data.usage?.output_tokens || 0);
+        } else if (provider === 'google') {
+            const endpoint = this.config.customEndpoint || `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
+            const payload: any = {
+                contents: [{ parts: [{ text: prompt }] }],
+                generationConfig: { temperature: 0.2 },
+            };
+            if (system) {
+                payload.systemInstruction = { parts: [{ text: system }] };
+            }
+
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(this.config.customHeaders || {})
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                const errText = await response.text();
+                throw new Error(`Google API Error: ${response.status} - ${errText}`);
+            }
+
+            const data: any = await response.json();
+            result = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
+            tokensUsed = data.usageMetadata?.totalTokenCount || 0;
         } else {
              throw new Error(`Provider ${provider} not fully integrated in adapter yet.`);
         }

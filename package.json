@@ -8,11 +8,17 @@
     "build": "pnpm -r build",
     "typecheck": "pnpm -r typecheck",
     "test": "pnpm -r test",
+    "test:cli": "tsx packages/core/examples/cli.ts",
+    "test:cli:open": "tsx packages/core/examples/cli-open-ended.ts",
     "dev": "pnpm -r --parallel dev"
   },
   "workspaces": [
     "packages/core",
     "packages/adapter",
     "packages/plugin"
-  ]
+  ],
+  "devDependencies": {
+    "dotenv": "^17.4.2",
+    "tsx": "^4.21.0"
+  }
 }

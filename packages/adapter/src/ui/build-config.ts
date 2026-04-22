@@ -5,22 +5,24 @@ export const agentConfigurationDoc: any = {
       label: 'Lightweight Model',
       type: 'string',
       required: true,
-      default: 'claude-3-haiku-20240307' // fallback default string
+      description: 'Suggested: gemini-2.5-flash, gpt-5.4-mini, or claude-haiku-4-5',
+      default: 'gemini-2.5-flash'
     },
     {
       name: 'model_heavy',
       label: 'Heavyweight Model',
       type: 'string',
       required: true,
-      default: 'claude-3-opus-20240229'
+      description: 'Suggested: gemini-2.5-pro, gpt-5.4, or claude-opus-4-7',
+      default: 'gemini-2.5-pro'
     },
     {
-       name: 'execution_mode',
-       label: 'Execution Mode',
-       type: 'enum',
-       options: ['sequential', 'parallel'],
-       default: 'parallel',
-       required: true,
+      name: 'execution_mode',
+      label: 'Execution Mode',
+      type: 'enum',
+      options: ['sequential', 'parallel'],
+      default: 'parallel',
+      required: true,
     },
     {
       name: 'api_provider',

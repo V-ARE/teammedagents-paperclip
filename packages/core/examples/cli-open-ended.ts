@@ -3,15 +3,10 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 const main = async () => {
+    // Open-ended input (no options provided)
     const input: QuestionInput = {
-        caseId: 'test-1',
-        text: 'A 54-year-old male presents with sudden onset sharp chest pain that radiates to his back. His blood pressure is 180/100 mmHg. ECG shows sinus tachycardia but no ST elevation. What is the most likely diagnosis and what is the best immediate diagnostic step?',
-        options: [
-            'A) Myocardial Infarction; perform cardiac cath',
-            'B) Pulmonary Embolism; order CT pulmonary angiogram',
-            'C) Aortic Dissection; order CT aortogram',
-            'D) Pericarditis; prescribe NSAIDs'
-        ]
+        caseId: 'test-open-ended-1',
+        text: 'A 28-year-old software engineer is designing a highly scalable, distributed queuing system to handle 10 million events per second. What architecture pattern should they prioritize and what are the primary trade-offs?',
     };
 
     const config: TeamConfig = {
@@ -27,7 +22,7 @@ const main = async () => {
         useSMM: true
     };
 
-    console.log("Running Case with Native LLM Setup...");
+    console.log("Running Open-Ended Case with Native LLM Setup...");
     try {
         const result = await executeCase(input, config);
         console.log("\n=== FINAL RESULT ===");
