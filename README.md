@@ -56,6 +56,9 @@ When you operate this wrapper, these are the confirmed stable endpoints natively
 - `gemini-2.5-flash` (Medium, Fast Agentic)
 - `gemini-2.5-flash-lite` (Light, High volume)
 
+**Google Cloud Vertex AI (`api_provider: 'vertex'`)**
+- Supports all Gemini models (e.g. `gemini-2.5-pro`, `gemini-2.5-flash`) mapped directly to your GCP Project and Region endpoints using an OAuth Bearer token or Service Account impersonation.
+
 ## 🛠 Compilation and Building
 
 ```bash

@@ -6,10 +6,12 @@ export interface ModelStrategy {
   light: string;
   heavy: string;
   image?: string;
-  apiProvider?: 'openai' | 'anthropic' | 'google' | 'custom';
+  apiProvider?: 'openai' | 'anthropic' | 'google' | 'vertex' | 'custom';
   apiKey?: string;
   customEndpoint?: string;
   customHeaders?: Record<string, string>;
+  vertexProjectId?: string;
+  vertexLocation?: string;
 }
 
 export interface QuestionInput {

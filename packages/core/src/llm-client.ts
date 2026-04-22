@@ -110,6 +110,41 @@ export class LLMClient {
             const data: any = await response.json();
             result = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
             tokensUsed = data.usageMetadata?.totalTokenCount || 0;
+        } else if (provider === 'vertex') {
+            const vProject = this.config.vertexProjectId || process.env.VERTEX_PROJECT_ID;
+            const vLocation = this.config.vertexLocation || process.env.VERTEX_LOCATION || 'us-central1';
+            const vToken = this.config.apiKey || process.env.VERTEX_ACCESS_TOKEN || process.env.API_KEY || apiKey;
+            
+            if (!vProject) throw new Error("Vertex AI requires vertexProjectId (or VERTEX_PROJECT_ID env var)");
+            
+            const endpoint = this.config.customEndpoint || `https://${vLocation}-aiplatform.googleapis.com/v1/projects/${vProject}/locations/${vLocation}/publishers/google/models/${modelName}:generateContent`;
+            
+            const payload: any = {
+                contents: [{ role: 'user', parts: [{ text: prompt }] }],
+                generationConfig: { temperature: 0.2 },
+            };
+            if (system) {
+                payload.systemInstruction = { parts: [{ text: system }] };
+            }
+
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${vToken}`,
+                    ...(this.config.customHeaders || {})
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                const errText = await response.text();
+                throw new Error(`Vertex API Error: ${response.status} - ${errText}`);
+            }
+
+            const data: any = await response.json();
+            result = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
+            tokensUsed = data.usageMetadata?.totalTokenCount || 0;
         } else {
              throw new Error(`Provider ${provider} not fully integrated in adapter yet.`);
         }

@@ -28,7 +28,7 @@ export const agentConfigurationDoc: any = {
       name: 'api_provider',
       label: 'API Provider',
       type: 'enum',
-      options: ['openai', 'anthropic', 'google', 'custom'],
+      options: ['openai', 'anthropic', 'google', 'vertex', 'custom'],
       default: 'anthropic',
       required: true
     },
@@ -41,6 +41,18 @@ export const agentConfigurationDoc: any = {
     {
       name: 'custom_endpoint',
       label: 'Custom HTTP Endpoint',
+      type: 'string',
+      required: false,
+    },
+    {
+      name: 'vertex_project_id',
+      label: 'Vertex AI Project ID',
+      type: 'string',
+      required: false,
+    },
+    {
+      name: 'vertex_location',
+      label: 'Vertex AI Location (e.g. us-central1)',
       type: 'string',
       required: false,
     }

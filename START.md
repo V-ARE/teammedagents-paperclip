@@ -112,6 +112,7 @@ If any of these disagree, the local `docs/decisions/` entries win. If no decisio
 - **Parse agent output as untrusted.** Validate shapes, never eval, never forward commands or URLs blindly.
 - **Model-Agnostic Design:** The adapter must work seamlessly with any API key provider (e.g., OpenAI, Anthropic, Grok, Google AI Studio, Gemma, etc.). Users have the power to pick their own models (light model, heavy model, image-capable model) when providing API keys.
 - **Verified Model Support Matrix (April 2026):** The adapter safely supports and automatically resolves endpoints for:
+   - *Google Cloud Vertex AI:* Natively routes directly to your enterprise GCP project endpoints via OAuth tokens.
    - *Google AI Studio:* `gemini-2.5-pro`, `gemini-2.5-flash`, `gemini-2.5-flash-lite`
    - *OpenAI:* `gpt-5.4`, `gpt-5.4-pro`, `gpt-5.4-mini`
    - *Anthropic:* `claude-opus-4-7`, `claude-sonnet-4-6`, `claude-haiku-4-5`
