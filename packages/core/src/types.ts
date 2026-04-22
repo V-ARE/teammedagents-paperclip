@@ -2,11 +2,13 @@ import { z } from 'zod';
 
 export type ModelTier = 'light' | 'heavy' | 'image';
 
+export type ApiProvider = 'openai' | 'anthropic' | 'google' | 'vertex' | 'custom';
+
 export interface ModelStrategy {
   light: string;
   heavy: string;
   image?: string;
-  apiProvider?: 'openai' | 'anthropic' | 'google' | 'vertex' | 'custom';
+  apiProvider?: ApiProvider;
   apiKey?: string;
   customEndpoint?: string;
   customHeaders?: Record<string, string>;

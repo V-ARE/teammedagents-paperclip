@@ -23,8 +23,9 @@ You can rigorously verify the logic engine with your own tokens before pushing i
    cp .env.example .env
    ```
 3. Open your new `.env` file at the root and insert your API keys for the providers you wish to test (e.g., `OPENAI_API_KEY`, `GOOGLE_API_KEY`).
-4. Select your specific Models and Provider manually! Open `packages/core/examples/cli.ts` (or `cli-open-ended.ts`) in your editor and modify the `const config: TeamConfig` variable. 
-   - By default, it's set to test Google AI Studio modes. You can swap `apiProvider` to `'openai'` and swap the `light`/`heavy` models fields over to `gpt-5.4` based on the matrix below!
+4. Configure your runtime parameters! The testing scripts dynamically load their configuration from the new `teammedagents.config.ts` located at the root directory.
+   - You can globally define `apiProvider`, `light`, and `heavy` models inside `teammedagents.config.ts`.
+   - Alternatively, you can override them on the fly directly inside your `.env` file using `LLM_PROVIDER`, `LLM_LIGHT_MODEL`, and `LLM_HEAVY_MODEL` variables!
 5. Execute the built-in isolated tests natively from the root: 
    ```bash
    pnpm run test:cli

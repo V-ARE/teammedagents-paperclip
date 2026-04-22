@@ -1,5 +1,6 @@
 import { executeCase, QuestionInput, TeamConfig } from '../src';
 import * as dotenv from 'dotenv';
+import { loadConfig } from './config-loader';
 dotenv.config();
 
 const main = async () => {
@@ -14,18 +15,7 @@ const main = async () => {
         ]
     };
 
-    const config: TeamConfig = {
-        models: {
-            light: 'gemini-2.5-flash',
-            heavy: 'gemini-2.5-pro',
-            apiProvider: 'google',
-            apiKey: process.env.GOOGLE_API_KEY
-        },
-        execution: 'parallel',
-        maxTurns: 2,
-        useTrustNetwork: true,
-        useSMM: true
-    };
+    const config = await loadConfig();
 
     console.log("Running Case with Native LLM Setup...");
     try {
