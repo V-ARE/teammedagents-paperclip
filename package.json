@@ -10,6 +10,9 @@
     "test": "pnpm -r test",
     "test:cli": "tsx packages/core/examples/cli.ts",
     "test:cli:open": "tsx packages/core/examples/cli-open-ended.ts",
+    "test:cli:finance": "tsx packages/core/examples/cli-finance.ts",
+    "test:cli:legal": "tsx packages/core/examples/cli-legal.ts",
+    "test:cli:creative": "tsx packages/core/examples/cli-creative.ts",
     "dev": "pnpm -r --parallel dev"
   },
   "workspaces": [

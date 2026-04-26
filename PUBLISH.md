@@ -1,31 +1,60 @@
-# 🚀 How to Publish the Adapter
+# Publishing & Paperclip Integration
 
-Because we ensured flawless compilation outputs straight to `dist/` folders and exported standard `package.json` logic, the plugin is natively designed to be pushed directly via npm.
+This document outlines how to test the TeamMedAgents adapter locally within a live Paperclip codebase, and how to publish the finalized packages to NPM.
 
-1. **Verify your build one last time:**
-   Run `$ pnpm -r build` inside the root directory.
-2. **Log into npm:**
-   Run `$ npm login` and authenticate.
-3. **Publish the Adapter:**
-   Navigate into the adapter specifically (`$ cd packages/adapter`) and execute `$ npm publish --access public`. 
-   
-*(Ensure you've updated the exact `name`, `version`, and `author` inside `packages/adapter/package.json` before publishing so it reflects the namespace you want on the npm registry).*
+## 1. Local Testing with Paperclip (Without Publishing)
 
-# 🧪 How to Test It Actively as a Paperclip Adapter
+If you are developing inside a cloned `paperclip` repository (e.g. `references/paperclip`), you can test the adapter locally without publishing it to NPM.
 
-You can bind this to the Paperclip platform locally before you ever publish it to the external world!
+### Step 1: Build the Adapter
+In this `teammedagents-paperclip` repository, build both the core and adapter packages:
+```bash
+pnpm run build
+```
 
-1. **Build the packages:** `$ pnpm -r build`.
-2. **Link the Plugin Locally:** Open the global Paperclip adapter registry on your machine (usually located at `~/.paperclip/adapter-plugins.json`).
-3. **Add the Path:** Add a direct file schema path pointing to your compiled local adapter folder. Example:
-   ```json
-   {
-     "teammedagents_local": "file:///E:/teammedagents-paperclip/packages/adapter"
+### Step 2: Symlink into the Paperclip Server
+Navigate to the `server` directory of your cloned Paperclip repository and use `pnpm link` to point directly to your local compiled packages:
+```bash
+cd /path/to/your/paperclip/server
+pnpm link /path/to/teammedagents-paperclip/packages/core
+pnpm link /path/to/teammedagents-paperclip/packages/adapter
+```
+*(This bypasses global linking issues and safely injects your local build directly into the Paperclip server's `node_modules`.)*
+
+### Step 3: Register the Adapter in Paperclip
+Inside the Paperclip repository, open `server/src/adapters/registry.ts`. 
+
+1. **Import your adapter** at the top alongside the other adapters:
+   ```typescript
+   import teammedagentsAdapter from "@teammedagents-paperclip/adapter";
+   ```
+2. **Add it to the registry array** inside the `registerBuiltInAdapters()` function:
+   ```typescript
+   function registerBuiltInAdapters() {
+     for (const adapter of [
+       // ... existing adapters ...
+       httpAdapter,
+       teammedagentsAdapter as ServerAdapterModule,
+     ]) {
+       adaptersByType.set(adapter.type, adapter);
+     }
    }
    ```
-4. **Boot Up Paperclip:**
-   Start your Paperclip server instance (`$ paperclipai start` or equivalent). 
-   - Once the UI launches in your browser, click **"Create Agent"**.
-   - You will see **"TeamMedAgents"** appear cleanly in your provider dropdown list!
-   - Because of our `ui/build-config.ts` mapping, when you select it, the right-hand panel will *automatically* render text input fields asking for your API Key, your API Provider (OpenAI/Anthropic), and toggles for sequential vs. parallel execution.
-5. **Attach a Workflow:** Send a request inside Paperclip. Paperclip will forward the request natively into our `packages/adapter/src/server/execute.ts` function, and you'll see the multi-model collaboration render step-by-step directly onto your screen!
+
+### Step 4: Run the Paperclip App!
+Run `pnpm install` then `pnpm run dev` in your Paperclip root. Open the Paperclip UI, click "Create Agent", and "TeamMedAgents" will natively appear in the LLM Provider dropdown! You can attach it to any workflow and watch the multi-agent deliberation execute live.
+
+## 2. Publishing to NPM
+
+Once verified locally, you can publish the `@teammedagents-paperclip/core` and `@teammedagents-paperclip/adapter` packages.
+
+### Step 1: Bump Versions
+Update the version numbers in both `packages/core/package.json` and `packages/adapter/package.json`.
+
+### Step 2: Build & Publish
+```bash
+pnpm run build
+pnpm -r publish --access public
+```
+
+*Note: Ensure you are authenticated with `npm login` and have the proper permissions for the `@teammedagents-paperclip` scope.*

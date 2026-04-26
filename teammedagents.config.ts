@@ -8,9 +8,9 @@
  */
 export default {
     models: {
-        light: 'gemini-2.5-flash', // Suggested: gemini-2.5-flash, gpt-5.4-mini, or claude-haiku-4-5
-        heavy: 'gemini-2.5-pro',   // Suggested: gemini-2.5-pro, gpt-5.4, or claude-opus-4-7
-        apiProvider: 'google'
+        light: 'gpt-5.4-mini',
+        heavy: 'gpt-5.4',
+        apiProvider: 'openai'
     },
     execution: 'parallel', // 'sequential' | 'parallel'
     maxTurns: 2,

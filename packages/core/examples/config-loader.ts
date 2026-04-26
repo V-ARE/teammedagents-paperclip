@@ -1,6 +1,7 @@
 import { TeamConfig, ApiProvider } from '../src';
 import * as path from 'path';
 import * as fs from 'fs';
+import { pathToFileURL } from 'url';
 
 export const loadConfig = async (): Promise<TeamConfig> => {
     // Default fallback config
@@ -21,12 +22,12 @@ export const loadConfig = async (): Promise<TeamConfig> => {
     try {
         const rootConfigPath = path.resolve(process.cwd(), 'teammedagents.config.ts');
         if (fs.existsSync(rootConfigPath)) {
-            const rootConfig = (await import(rootConfigPath)).default;
+            const rootConfig = (await import(pathToFileURL(rootConfigPath).href)).default;
             if (rootConfig) {
-                config = { 
-                    ...config, 
-                    ...rootConfig, 
-                    models: { ...config.models, ...rootConfig.models } 
+                config = {
+                    ...config,
+                    ...rootConfig,
+                    models: { ...config.models, ...rootConfig.models }
                 };
             }
         }
@@ -40,7 +41,7 @@ export const loadConfig = async (): Promise<TeamConfig> => {
     if (process.env.LLM_HEAVY_MODEL) config.models.heavy = process.env.LLM_HEAVY_MODEL;
     if (process.env.EXECUTION_MODE) config.execution = process.env.EXECUTION_MODE as any;
     if (process.env.MAX_TURNS) config.maxTurns = parseInt(process.env.MAX_TURNS, 10);
-    
+
     // Resolve proper API keys based on provider
     const provider = config.models.apiProvider;
     if (provider === 'google') config.models.apiKey = process.env.GOOGLE_API_KEY || process.env.GEMINI_API_KEY;

@@ -5,9 +5,7 @@ import { agentConfigurationDoc } from './ui/build-config';
 export const type = "teammedagents_local";
 export const label = "TeamMedAgents";
 
-export default {
-  type,
-  label,
+export {
   execute,
   testEnvironment,
   agentConfigurationDoc
