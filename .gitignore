@@ -50,6 +50,7 @@ Thumbs.db
 # Reference repos (read-only, cloned into references/)
 # Do not edit these — they are external sources for porting patterns
 # See references/*/README.md for usage guidelines
+# references/
 
 # Build artifacts
 .next/

@@ -1,5 +1,7 @@
 # TeamMedAgents Paperclip Adapter
 
+[![npm version](https://badge.fury.io/js/@paranoid17%2Fteammedagents-paperclip-adapter.svg)](https://www.npmjs.com/package/@paranoid17/teammedagents-paperclip-adapter)
+
 Shipping TeamMedAgents as a first-class citizen of the Paperclip orchestration platform. Phase v0.1 focuses on a pure TypeScript adapter that runs the full TeamMedAgents algorithmic team as one natively managed employee component.
 
 **📖 Start here:** Read [START.md](START.md) — it is the source of truth for this project.
@@ -36,7 +38,7 @@ You can rigorously verify the logic engine with your own tokens before pushing i
 *This will execute the entire TeamMedAgent architecture in your terminal, emitting logs and final traces securely.*
 
 ### Usage inside Paperclip (Adapter)
-No `.env` files are necessary when operated as an adapter! The `@teammedagents-paperclip/adapter` exposes a fully structured `AgentConfigurationDoc` generated inside `ui/build-config.ts`. Once successfully bound to Paperclip, the AI Studio orchestration dashboard will automatically generate UI dropdowns asking the user for their keys safely, choosing Light/Heavy base models, and configuring rules via frontend parameters globally.
+No `.env` files are necessary when operated as an adapter! The `@paranoid17/teammedagents-paperclip-adapter` exposes a fully structured `AgentConfigurationDoc` generated inside `ui/build-config.ts`. Once successfully bound to Paperclip, the AI Studio orchestration dashboard will automatically generate UI dropdowns asking the user for their keys safely, choosing Light/Heavy base models, and configuring rules via frontend parameters globally.
 
 **For a complete, step-by-step guide on how to safely test and bind this adapter into your local Paperclip codebase, please read [PUBLISH.md](PUBLISH.md) carefully.**
 

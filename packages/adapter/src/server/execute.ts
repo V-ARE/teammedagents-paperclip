@@ -1,4 +1,4 @@
-import { executeCase, ModelStrategy, TeamConfig, QuestionInput } from '@teammedagents-paperclip/core';
+import { executeCase, ModelStrategy, TeamConfig, QuestionInput } from '@paranoid17/teammedagents-paperclip-core';
 import type { AdapterExecutionContext, AdapterExecutionResult } from '@paperclipai/adapter-utils';
 
 export async function execute(ctx: AdapterExecutionContext): Promise<AdapterExecutionResult> {

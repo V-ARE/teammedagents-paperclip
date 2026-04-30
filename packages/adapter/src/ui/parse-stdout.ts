@@ -1,4 +1,4 @@
-import { TranscriptEvent } from '@teammedagents-paperclip/core';
+import { TranscriptEvent } from '@paranoid17/teammedagents-paperclip-core';
 
 export function parseStdoutToTranscript(event: TranscriptEvent): any {
     return {

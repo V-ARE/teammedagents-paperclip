@@ -1,5 +1,5 @@
 {
-  "name": "@teammedagents-paperclip/core",
+  "name": "@paranoid17/teammedagents-paperclip-core",
   "version": "0.0.2",
   "type": "module",
   "description": "Pure TypeScript runtime for TeamMedAgents workflow and teamwork orchestration",

@@ -1,5 +1,5 @@
 {
-  "name": "@teammedagents-paperclip/adapter",
+  "name": "@paranoid17/teammedagents-paperclip-adapter",
   "version": "0.0.2",
   "type": "module",
   "description": "Paperclip adapter that runs TeamMedAgents as a managed employee",
@@ -26,7 +26,7 @@
   "license": "MIT",
   "dependencies": {
     "@paperclipai/adapter-utils": "2026.416.0",
-    "@teammedagents-paperclip/core": "workspace:*"
+    "@paranoid17/teammedagents-paperclip-core": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",

@@ -56,7 +56,7 @@ Paperclip needs to know that your adapter exists on the backend. You must manual
 1. Open `server/src/adapters/registry.ts` inside the Paperclip repository.
 2. At the top of the file, add this import statement:
    ```typescript
-   import * as teammedagentsAdapter from "@teammedagents-paperclip/adapter";
+   import * as teammedagentsAdapter from "@paranoid17/teammedagents-paperclip-adapter";
    import type { ServerAdapterModule } from "./types.js";
    ```
 3. Scroll down to the `registerBuiltInAdapters()` function.
@@ -150,7 +150,48 @@ pnpm run build
 Authenticate with NPM and publish all packages recursively:
 ```bash
 npm login
-pnpm -r publish --access public
+
+# If your NPM account does NOT have 2FA enabled for publishing:
+pnpm -r publish --access public --no-git-checks
+
+# If your NPM account HAS 2FA enabled for publishing, you must provide an OTP code from your authenticator app:
+# pnpm -r publish --access public --no-git-checks --otp=123456
 ```
 
-*Note: Ensure you have the proper permissions for the `@teammedagents-paperclip` NPM scope.*
+*Note: Ensure you have the proper permissions for the `@paranoid17` NPM scope.*
+---
+
+## 3. Installing and Using the Adapter in Paperclip
+
+Now that your adapter is successfully published to NPM as @paranoid17/teammedagents-paperclip-adapter, any Paperclip user can install and use it in their agentic workflows!
+
+### Step 1: Install the External Adapter
+1. Open your terminal and navigate to the root of your live Paperclip instance.
+2. Run the Paperclip Plugin Manager to install your new adapter dynamically:
+   ```ash
+   pnpm paperclipai plugin install @paranoid17/teammedagents-paperclip-adapter
+   ```
+   *Note: Paperclip's plugin manager will automatically download the NPM package, inject it into the server's runtime registry, and dynamically create the UI bindings. You do NOT need to restart the server!*
+
+### Step 2: Create a TeamMedAgents Orchestrator
+1. Open the Paperclip UI in your browser.
+2. Navigate to **Company -> Agents** and click **"Create Agent"**.
+3. In the adapter selection grid, look for the **External Adapters** section. You will see **TeamMedAgents** listed automatically.
+4. Click **TeamMedAgents**.
+5. You will be presented with the dynamic configuration form we defined in ui/build-config.ts. Fill out:
+   - **Lightweight Model:** (e.g., gemini-2.5-flash)
+   - **Heavyweight Model:** (e.g., gemini-2.5-pro)
+   - **API Provider:** Select your preferred provider (Google, OpenAI, Anthropic).
+   - **API Key:** Paste your API key here (securely stored in the database).
+   - **Execution Mode:** Choose parallel or sequential.
+6. Name your agent (e.g., "Medical Review Board") and click **Save**.
+
+### Step 3: Run a Workflow
+Because the TeamMedAgents adapter implements the execute method to resolve abstract QuestionInput schemas into a finalized CaseResult consensus, it acts as a fully autonomous "Employee" within Paperclip.
+
+1. Navigate to **Tasks -> New Task**.
+2. Assign the task to your newly created "Medical Review Board" agent.
+3. In the prompt/question box, provide a complex medical or scientific scenario.
+4. Click **Run**.
+5. As the task executes, you will see real-time streaming logs as the Orchestrator dynamically recruits specialists, evaluates trust networks, and aggregates the Borda consensus—all natively embedded in Paperclip's run viewer!
+
