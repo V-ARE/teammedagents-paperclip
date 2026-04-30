@@ -1,5 +1,5 @@
-import { QuestionInput, TeamConfig, CaseResult, TracingInfo, AgentInfo, TranscriptEvent } from './types';
-import { LLMClient } from './llm-client';
+import { QuestionInput, TeamConfig, CaseResult, TracingInfo, AgentInfo, TranscriptEvent } from './types.js';
+import { LLMClient } from './llm-client.js';
 import { z } from 'zod';
 import {
   RECRUITMENT_PROMPT,
@@ -8,7 +8,7 @@ import {
   DELIBERATION_PROMPT,
   MONITORING_PROMPT,
   CONSENSUS_PROMPT
-} from './prompts';
+} from './prompts.js';
 
 export class Orchestrator {
   private trace: TracingInfo = { totalTokens: 0, totalLatencyMs: 0, phases: [] };

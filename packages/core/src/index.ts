@@ -7,6 +7,6 @@
  * See docs/teammedagent.md for the canonical algorithm.
  */
 
-export * from './types';
-export * from './llm-client';
-export * from './orchestrator';
+export * from './types.js';
+export * from './llm-client.js';
+export * from './orchestrator.js';

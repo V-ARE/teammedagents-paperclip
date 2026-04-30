@@ -1,11 +1,14 @@
 {
   "name": "@teammedagents-paperclip/adapter",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "type": "module",
   "description": "Paperclip adapter that runs TeamMedAgents as a managed employee",
   "main": "./dist/index.js",
   "exports": {
     ".": {
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
     }
   },
   "scripts": {

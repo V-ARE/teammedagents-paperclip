@@ -38,6 +38,8 @@ You can rigorously verify the logic engine with your own tokens before pushing i
 ### Usage inside Paperclip (Adapter)
 No `.env` files are necessary when operated as an adapter! The `@teammedagents-paperclip/adapter` exposes a fully structured `AgentConfigurationDoc` generated inside `ui/build-config.ts`. Once successfully bound to Paperclip, the AI Studio orchestration dashboard will automatically generate UI dropdowns asking the user for their keys safely, choosing Light/Heavy base models, and configuring rules via frontend parameters globally.
 
+**For a complete, step-by-step guide on how to safely test and bind this adapter into your local Paperclip codebase, please read [PUBLISH.md](PUBLISH.md) carefully.**
+
 ## 🤖 Verified Supported Models Matrix
 
 When you operate this wrapper, these are the confirmed stable endpoints natively typed and passed into the LLM Client via the orchestration map:

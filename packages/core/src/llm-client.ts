@@ -1,4 +1,4 @@
-import { ModelStrategy, TracingInfo } from './types';
+import { ModelStrategy, TracingInfo } from './types.js';
 import { z } from 'zod';
 
 export class LLMClient {
