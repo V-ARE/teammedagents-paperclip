@@ -1,5 +1,7 @@
 # TeamMedAgents Paperclip Adapter
 
+Based on Paper: Mishra, P. P., Arvan, M., & Zalake, M. (2025). Teammedagents: Enhancing medical decision-making of llms through structured teamwork. arXiv preprint arXiv:2508.08115. https://arxiv.org/abs/2508.08115
+
 [![npm version](https://badge.fury.io/js/@paranoid17%2Fteammedagents-paperclip-adapter.svg)](https://www.npmjs.com/package/@paranoid17/teammedagents-paperclip-adapter)
 
 Shipping TeamMedAgents as a first-class citizen of the Paperclip orchestration platform. Phase v0.1 focuses on a pure TypeScript adapter that runs the full TeamMedAgents algorithmic team as one natively managed employee component.
